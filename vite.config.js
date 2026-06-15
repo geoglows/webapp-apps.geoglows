@@ -6,7 +6,6 @@ export default defineConfig({
   root: '.',
   publicDir: 'public',
   build: {
-    outDir: 'dist',
-    target: ['es2020', 'safari14']
+    outDir: 'dist'
   }
 });
