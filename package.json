@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "build:site": "bash scripts/build-local.sh"
+    "preview": "vite preview"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
@@ -15,7 +14,7 @@
     "vite": "^8.1.4"
   },
   "dependencies": {
-    "@geoglows/geoglows-auth": "github:geoglows/geoglows-auth#v1.7.2",
-    "heroicons": "^2.2.0"
+    "@aquaveo/geoglows-auth": "^1.6.1",
+    "@vercel/analytics": "^2.0.1"
   }
 }
