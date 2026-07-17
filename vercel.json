@@ -4,17 +4,29 @@
   "framework": null,
   "installCommand": "npm install",
   "rewrites": [
-    { "source": "/grace-groundwater", "destination": "https://grace-staging.geoglows.org/" },
-    { "source": "/grace-groundwater/", "destination": "https://grace-staging.geoglows.org/" },
-    { "source": "/grace-groundwater/:path+", "destination": "https://grace-staging.geoglows.org/:path+" },
-    { "source": "/hydroviewer", "destination": "https://hydroviewer-staging.geoglows.org/" },
-    { "source": "/hydroviewer/", "destination": "https://hydroviewer-staging.geoglows.org/" },
-    { "source": "/hydroviewer/:path+", "destination": "https://hydroviewer-staging.geoglows.org/:path+" }
-  ],
-  "git": {
-    "deploymentEnabled": {
-      "main": false,
-      "staging": false
+    {
+      "source": "/grace-groundwater",
+      "destination": "https://grace-staging.geoglows.org/"
+    },
+    {
+      "source": "/grace-groundwater/",
+      "destination": "https://grace-staging.geoglows.org/"
+    },
+    {
+      "source": "/grace-groundwater/:path+",
+      "destination": "https://grace-staging.geoglows.org/:path+"
+    },
+    {
+      "source": "/hydroviewer",
+      "destination": "https://hydroviewer-staging.geoglows.org/"
+    },
+    {
+      "source": "/hydroviewer/",
+      "destination": "https://hydroviewer-staging.geoglows.org/"
+    },
+    {
+      "source": "/hydroviewer/:path+",
+      "destination": "https://hydroviewer-staging.geoglows.org/:path+"
     }
-  }
+  ]
 }
