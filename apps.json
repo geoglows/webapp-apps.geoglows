@@ -1,0 +1,70 @@
+{
+  "groups": [
+    {
+      "id": "surface-water",
+      "heading": "Rivers & Surface Water",
+      "apps": [
+        {
+          "name": "River Forecast System v3 (Preview)",
+          "description": "View past, current, and forecasted river conditions globally with charts, flood maps, hydrographs and analysis from the River Forecast System (RFS).",
+          "tags": ["RFS", "Surface Water", "Forecasting", "Flood Extent Maps (FIM)"],
+          "icon": "waves",
+          "accent": "blue",
+          "path": "/rfs-v3",
+          "repository": "rileyhales/rfs-v3-app"
+        },
+        {
+          "name": "Flood Early Warnings for All (Preview)",
+          "description": "Compare early warning systems for floods worldwide with data from national, regional, and global hydrology models.",
+          "tags": ["EW4All", "Flood Forecasting", "Disaster Risk Reduction", "Global Collaborative"],
+          "icon": "siren",
+          "accent": "amber",
+          "path": "/fews4all",
+          "repository": "geoglows/fews4all-app"
+        },
+        {
+          "name": "HydroSOS Water Status Monitor (Preview)",
+          "description": "Monitor water status and drought conditions globally with maps and charts from the HydroSOS Water Status Monitor.",
+          "tags": ["WMO", "Drought Monitoring", "Surface Water"],
+          "icon": "gauge",
+          "accent": "teal",
+          "path": "/hydrosos",
+          "repository": "geoglows/hydrosos_dashboard"
+        },
+        {
+          "name": "RFS Validation App",
+          "description": "Validate hydrographs and flood maps",
+          "tags": ["RFS", "Validation", "Gauges"],
+          "icon": "clipboard-check",
+          "accent": "emerald",
+          "path": "/rfs-v3-validation",
+          "repository": "geoglows/hydrosos_dashboard"
+        }
+      ]
+    },
+    {
+      "id": "groundwater",
+      "heading": "Groundwater Management",
+      "apps": [
+        {
+          "name": "GRACE Groundwater Anomalies",
+          "description": "Monitor regional groundwater storage changes based on GRACE and GRACE-FO gravity anomaly measurements.",
+          "tags": ["Groundwater", "Remote Sensing", "GRACE", "GLDAS"],
+          "icon": "scan-gravity",
+          "accent": "violet",
+          "path": "/grace-groundwater",
+          "repository": "geoglows/grace-gldas-groundwater-dashboard"
+        },
+        {
+          "name": "Aquifer Analyst",
+          "description": "Map and analyze your groundwater well locations and observations locally and privately on your browser.",
+          "tags": ["Mapping", "Analytics", "In-situ Data"],
+          "icon": "boxes",
+          "accent": "indigo",
+          "path": "/aquifer-analyst",
+          "repository": "geoglows/aquiferx"
+        }
+      ]
+    }
+  ]
+}
