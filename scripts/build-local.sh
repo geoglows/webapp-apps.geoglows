@@ -157,6 +157,3 @@ if [ ${#missing[@]} -gt 0 ]; then
 fi
 echo ""
 echo "    preview with:  npx serve _site   (or any static file server)"
-
-mkdir -p _site/fews4all
-cp ../fews4all-app/Software/Front_End/* _site/fews4all/

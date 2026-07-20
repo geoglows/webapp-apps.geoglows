@@ -29,16 +29,7 @@
           "icon": "gauge",
           "accent": "teal",
           "path": "/hydrosos",
-          "repository": "geoglows/hydrosos_dashboard"
-        },
-        {
-          "name": "RFS Validation App",
-          "description": "Validate hydrographs and flood maps",
-          "tags": ["RFS", "Validation", "Gauges"],
-          "icon": "clipboard-check",
-          "accent": "emerald",
-          "path": "/rfs-v3-validation",
-          "repository": "geoglows/hydrosos_dashboard"
+          "repository": "geoglows/rfs-v2-hydrosos"
         }
       ]
     },
