@@ -34,12 +34,25 @@
 # artifact) is overwritten. node_modules is reused as-is; nothing is installed
 # unless it is missing.
 #
+# PORTAL_BASE (optional) prefixes the whole portal with a sub-path. With
+# PORTAL_BASE=/portal the index builds at /portal/ and /rfs at /portal/rfs/,
+# and the output is assembled into ./_site/portal so that serving ./_site still
+# reproduces the real URLs. Unset (the default, matching GitHub Pages) means the
+# portal is served from the domain root.
+#
+# EXPLICIT_HTML=1 (optional) makes the landing page link to files instead of
+# directories — /rfs-v3/index.html rather than /rfs-v3. Set it when the target
+# host serves objects literally (a bare CDN origin) instead of rewriting a
+# directory URL to its index the way GitHub Pages does, or every app card 404s.
+#
 # Usage:
 #   ./scripts/build-local.sh                      # full site (index + all apps)
 #   ./scripts/build-local.sh rfs                  # rebuild only /rfs
 #   ./scripts/build-local.sh rfs hydrosos         # rebuild only these apps
 #   npm run build:site -- rfs                     # same, via npm (note the --)
 #   APPS_DIR=~/code/geoglows ./scripts/build-local.sh
+#   PORTAL_BASE=/portal ./scripts/build-local.sh  # whole portal under /portal
+#   EXPLICIT_HTML=1 ./scripts/build-local.sh      # app links end in /index.html
 #   npx serve _site                               # preview the assembled site
 
 set -euo pipefail
@@ -52,6 +65,23 @@ command -v jq >/dev/null || { echo "error: jq is required (brew install jq)" >&2
 
 APPS_DIR="${APPS_DIR:-..}"
 CONFIG="apps.json"
+
+# Sub-path the whole portal is served under, normalised to either "" or
+# "/portal" (one leading slash, no trailing one). Every app base and the
+# assembled output directory hang off it.
+PORTAL_BASE="${PORTAL_BASE:-}"
+PORTAL_BASE="${PORTAL_BASE%/}"
+[ -n "$PORTAL_BASE" ] && PORTAL_BASE="/${PORTAL_BASE#/}"
+export PORTAL_BASE                       # vite.config.js reads it for the index build
+SITE_ROOT="_site${PORTAL_BASE}"          # _site, or _site/portal
+[ -n "$PORTAL_BASE" ] && echo "==> portal base: ${PORTAL_BASE}/ (assembling into ${SITE_ROOT}/)"
+
+# Spell out index.html/profile.html in the landing page's links. VITE_-prefixed
+# so Vite exposes it to client code as import.meta.env (see src/urls.js).
+if [ -n "${EXPLICIT_HTML:-}" ] && [ "$EXPLICIT_HTML" != "0" ]; then
+  export VITE_EXPLICIT_HTML=1
+  echo "==> explicit .html links (app cards point at <app>/index.html)"
+fi
 
 # Any arguments are app selectors; none means "build the whole site".
 TARGETS=("$@")
@@ -76,12 +106,12 @@ if [ "$targeted" -eq 0 ]; then
   [ -d node_modules ] || npm install
   npm run build
 
-  mkdir -p _site
-  cp -r dist/. _site/
+  mkdir -p "$SITE_ROOT"
+  cp -r dist/. "$SITE_ROOT/"
   touch _site/.nojekyll
 else
-  echo "==> targeted build (index and other apps in _site/ left as-is): ${TARGETS[*]}"
-  [ -d _site ] || echo "!!  _site/ doesn't exist yet — run with no arguments once to build the full site first"
+  echo "==> targeted build (index and other apps in ${SITE_ROOT}/ left as-is): ${TARGETS[*]}"
+  [ -d "$SITE_ROOT" ] || echo "!!  ${SITE_ROOT}/ doesn't exist yet — run with no arguments once to build the full site first"
 fi
 
 missing=()
@@ -94,10 +124,10 @@ while IFS= read -r app; do
   build=$(printf '%s' "$app" | jq -r '.build // empty')
   dist=$(printf '%s' "$app" | jq -r '.dist // "dist"')
 
-  base="/${path#/}"          # normalise to one leading slash: /rfs
-  slug="${path#/}"           # rfs
-  repobase="${repo##*/}"     # rfs-v2-hydroviewer
-  dest="_site${base}"        # _site/rfs
+  slug="${path#/}"                 # rfs
+  base="${PORTAL_BASE}/${slug}"    # /rfs, or /portal/rfs
+  repobase="${repo##*/}"           # rfs-v2-hydroviewer
+  dest="${SITE_ROOT}/${slug}"      # _site/rfs, or _site/portal/rfs
 
   # In targeted mode, build only the apps whose selector was passed.
   if [ "$targeted" -eq 1 ] && ! app_targeted "$slug" "$repobase"; then

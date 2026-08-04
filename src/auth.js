@@ -19,19 +19,25 @@ import {
   renderAuthAction,
   updateProfile,
 } from "@aquaveo/geoglows-auth/core";
+import { basePath, explicitHtml } from "./urls.js";
 
 const supabase = createGeoglowsSupabaseClient({
   url: import.meta.env.VITE_SUPABASE_URL,
   publishableKey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
 });
 
-// Bare origin, not origin+pathname: mountSignInModal passes its own redirect
-// targets (both defaulting to the origin), and from /profile this fallback
+// The portal root: the origin, plus the build's base path when the whole
+// portal is served under a sub-path (PORTAL_BASE=/portal -> /portal/).
+const portalRoot = window.location.origin + basePath();
+
+// Bare portal root, not root+pathname: mountSignInModal passes its own redirect
+// targets (both defaulting to it), and from /profile this fallback
 // would otherwise resolve to a URL that isn't in the Supabase allowlist.
+const portalHome = explicitHtml(portalRoot);
 const auth = createSupabaseAuthAdapter({
   supabase,
-  defaultRedirectTo: window.location.origin,
-  logoutRedirectTo: window.location.origin,
+  defaultRedirectTo: portalHome,
+  logoutRedirectTo: portalHome,
 });
 
 const state = {
@@ -168,7 +174,9 @@ function setState(patch) {
 /* ----------------------------------------------------------------- header */
 
 function render() {
-  slot.innerHTML = renderAuthAction(state, { profileHref: "/profile" });
+  slot.innerHTML = renderAuthAction(state, {
+    profileHref: explicitHtml(`${portalRoot}/profile`, { page: true }),
+  });
   slot.querySelector("#geoglowsSignIn")?.addEventListener("click", () => modal.open());
   slot.querySelector("#geoglowsSignOut")?.addEventListener("click", signOut);
   if (profile) renderProfile();

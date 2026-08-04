@@ -1,4 +1,5 @@
 import config from "../apps.json";
+import { basePath, explicitHtml } from "./urls.js";
 
 const ICONS = {
   waves: `<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>`,
@@ -32,6 +33,14 @@ const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
+// Apps are siblings of the index under the portal base, so their apps.json
+// path (/rfs-v3) hangs off BASE_URL ("/" normally, "/portal/" when the whole
+// portal is built under a sub-path). VITE_EXPLICIT_HTML spells out the
+// index.html for hosts (a bare CDN origin) that don't resolve a directory URL
+// to its index — see explicitHtml in src/urls.js.
+const appHref = (path) =>
+  explicitHtml(`${basePath()}/${String(path ?? "").replace(/^\/+/, "")}`);
+
 function tagPill(text) {
   return `<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border border-blue-200 dark:border-slate-700">${esc(text)}</span>`;
 }
@@ -43,7 +52,7 @@ function appCard(app) {
   const accent = ACCENTS[app.accent] ?? ACCENTS[FALLBACK_ACCENT];
   const tags = (app.tags ?? []).map(tagPill).join("");
   return `
-      <a href="${esc(app.path)}" class="glass-card p-8 rounded-2xl flex flex-col h-full group relative overflow-hidden">
+      <a href="${esc(appHref(app.path))}" class="glass-card p-8 rounded-2xl flex flex-col h-full group relative overflow-hidden">
         <div class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-blue-500" aria-hidden="true">
             <path d="M7 7h10v10"/>

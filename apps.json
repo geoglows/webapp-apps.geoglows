@@ -43,7 +43,7 @@
           "tags": ["Groundwater", "Remote Sensing", "GRACE", "GLDAS"],
           "icon": "scan-gravity",
           "accent": "violet",
-          "path": "/grace-groundwater",
+          "path": "/grace-anomalies",
           "repository": "geoglows/grace-gldas-groundwater-dashboard"
         },
         {
@@ -52,7 +52,7 @@
           "tags": ["Mapping", "Analytics", "In-situ Data"],
           "icon": "boxes",
           "accent": "indigo",
-          "path": "/aquifer-analyst",
+          "path": "/aquiferx",
           "repository": "geoglows/aquiferx"
         }
       ]
