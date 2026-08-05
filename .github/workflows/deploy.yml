@@ -1,0 +1,106 @@
+name: Build & Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # The landing page is this repo. Its dist/ becomes the site root.
+      - name: Build index
+        run: |
+          npm ci
+          npm run build
+
+      # Clone + build each app declared in apps.json and drop its output
+      # under _site/<path>, so the whole site (index at root, every app at its
+      # own path) deploys as one GitHub Pages site.
+      #
+      # scripts/build-local.sh assembles the same site from local checkouts for
+      # previewing uncommitted work — it shares this build + assemble logic but
+      # reads working copies instead of cloning. Recognised per-app fields in
+      # apps.json:
+      #   repository (required)  owner/repo on GitHub; its presence marks an app buildable
+      #   path       (required)  URL path the app is served at, also its build base (e.g. /hydroviewer)
+      #   ref        (optional)  branch or tag to clone   (default: repo's default branch)
+      #   install    (optional)  install command          (default: npm ci if lockfile, else npm install)
+      #   build      (optional)  build command; $BASE (e.g. /hydroviewer) is exported
+      #                          (default: npx vite build --base="$BASE/")
+      #   dist       (optional)  output dir to copy from  (default: dist)
+      - name: Clone, build, and assemble apps
+        run: |
+          set -euo pipefail
+
+          mkdir -p _site
+          cp -r dist/. _site/
+          touch _site/.nojekyll
+
+          while IFS= read -r app; do
+            repo=$(printf '%s' "$app" | jq -r '.repository')
+            ref=$(printf '%s' "$app" | jq -r '.ref // empty')
+            path=$(printf '%s' "$app" | jq -r '.path')
+            install=$(printf '%s' "$app" | jq -r '.install // empty')
+            build=$(printf '%s' "$app" | jq -r '.build // empty')
+            dist=$(printf '%s' "$app" | jq -r '.dist // "dist"')
+
+            base="/${path#/}"          # normalise to one leading slash: /hydroviewer
+            dir=".build/${repo##*/}"   # clone location: .build/rfs-v2-hydroviewer
+            dest="_site${base}"        # _site/hydroviewer
+
+            echo "==> ${repo}${ref:+ @ ${ref}}  ->  ${base}/"
+            rm -rf "$dir"
+            if [ -n "$ref" ]; then
+              git clone --depth 1 --branch "$ref" "https://github.com/${repo}.git" "$dir"
+            else
+              git clone --depth 1 "https://github.com/${repo}.git" "$dir"
+            fi
+
+            (
+              cd "$dir"
+              export BASE="$base"
+              if [ -n "$install" ]; then eval "$install"
+              elif [ -f package-lock.json ]; then npm ci
+              else npm install; fi
+              if [ -n "$build" ]; then eval "$build"
+              else npx vite build --base="$BASE/"; fi
+            )
+
+            mkdir -p "$dest"
+            cp -r "$dir/$dist/." "$dest/"
+          done < <(jq -c '.groups[].apps[] | select((.repository // "") != "")' apps.config.json)
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
