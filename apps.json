@@ -82,7 +82,7 @@
           ],
           "icon": "heroicon:map",
           "accent": "cyan",
-          "path": "/rfs-hydrography-explorer",
+          "path": "/rfs-hydrography",
           "repository": "river-forecast-system/rfs-hydrography-explorer"
         },
         {

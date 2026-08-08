@@ -28,8 +28,8 @@ if [[ -z "${RFS_V3_DATA_DIR:-}" && -f "$repo_root/.env.development" ]]; then
 fi
 
 DATA_DIR="/Users/rchales/data/rfsv3"
-BUCKET="s3://rfs-v3-app-demonstration-401506828094-us-east-1-an"
-PREFIX="sample-data"
+BUCKET="s3://apps-geoglows-static"
+PREFIX="rfs-v3-sample-data"
 DEST="${BUCKET%/}/${PREFIX#/}"
 
 EXCLUDES=(

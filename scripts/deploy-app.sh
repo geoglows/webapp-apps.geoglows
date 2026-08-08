@@ -9,13 +9,6 @@
 # AWS_SECRET_ACCESS_KEY
 # S3_BUCKET_NAME
 # CLOUDFRONT_DISTRIBUTION_ID
-#
-# The distribution's origin is the S3 REST endpoint, which serves object keys
-# literally — /rfs-v3 would be a 404 even though /rfs-v3/index.html exists. A
-# viewer-request function on the distribution rewrites an extensionless URL to
-# <path>/index.html so links stay clean. It is configured on the distribution
-# itself, not here, and this script never touches it. It does mean every page
-# must be published as <name>/index.html to be reachable without a .html.
 
 set -euo pipefail
 
@@ -31,18 +24,30 @@ dest="s3://${S3_BUCKET_NAME}${base}"
 echo "==> building $base"
 npx vite build --base="$base"
 
+# Google tag, added by the deployment builder rather than to each app's code
+echo "==> injecting analytics"
+read -r -d '' ga_tag <<'HTML' || true
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LLEY2QHRVH"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-LLEY2QHRVH');</script>
+HTML
+
+# Make sure every page as a </head> to find and inject the tag
+missing=()
+while IFS= read -r -d '' page; do
+  grep -qi '</head>' "$page" || missing+=("$page")
+done < <(find dist -name '*.html' -print0)
+if [ ${#missing[@]} -gt 0 ]; then
+  echo "!!  no </head> to inject the tag into:" >&2
+  printf '!!    %s\n' "${missing[@]}" >&2
+  exit 1
+fi
+
+find dist -name '*.html' -print0 | TAG="$ga_tag" xargs -0 perl -0777 -pi -e 's{</head>}{$ENV{TAG}\n</head>}i'
+
 echo "==> publishing to $dest"
 aws s3 sync dist/ "$dest" --no-progress --exclude "*.html" --cache-control "public,max-age=3600"
 aws s3 sync dist/ "$dest" --no-progress --exclude "*" --include "*.html" --cache-control "no-cache"
 
-# Delete whatever this build no longer produces. Uploads are already done above,
-# so this pass only removes. At the site root the app directories sit alongside
-# the landing page's own files, so the sweep is narrowed to what the landing
-# page owns: "*/*" drops every subdirectory, then each directory this build
-# actually produced is added back. Those patterns are anchored, so they never
-# match rfs-v3/assets/... . Deriving them from dist/ rather than naming them
-# keeps a new page directory (assets/, profile/, terms/, licenses/, ...) swept
-# without editing this script.
 sweep=(--delete)
 if [ "$base" = "/" ]; then
   sweep+=(--exclude "*/*")

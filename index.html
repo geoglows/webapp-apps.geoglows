@@ -21,17 +21,13 @@
   <link rel="stylesheet" href="/src/style.css"/>
 
   <script>
-    // Blocking, before first paint, so the page never flashes the wrong theme.
     try {
       const stored = localStorage.getItem('theme');
       if (stored === 'dark' || (!stored && matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
       }
-    } catch (e) { /* private mode */
+    } catch (e) {
     }
-
-    // Supabase JS's detectSessionInUrl consumes the recovery hash during its
-    // own init, so src/session.js reads this snapshot, not window.location.
     window.__GEOGLOWS_INITIAL_URL__ = {
       hash: window.location.hash,
       search: window.location.search,
