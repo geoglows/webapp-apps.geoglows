@@ -5,6 +5,59 @@
       "heading": "Rivers & Surface Water",
       "apps": [
         {
+          "name": "River Forecast System v2",
+          "description": "View past, current, and forecasted river conditions globally with maps and charts from the River Forecast System (RFS).",
+          "tags": [
+            "RFS",
+            "Surface Water",
+            "Forecasting",
+            "Flood Prediction"
+          ],
+          "icon": "heroicon:globe-europe-africa",
+          "accent": "blue",
+          "path": "/rfs",
+          "repository": "geoglows/rfs-v2-hydroviewer"
+        },
+        {
+          "name": "HydroSOS Water Monitor",
+          "description": "Monitor water status and drought conditions globally with maps and charts from the HydroSOS Water Status Monitor.",
+          "tags": [
+            "WMO",
+            "Drought Monitoring",
+            "Surface Water"
+          ],
+          "icon": "heroicon:chart-bar-square",
+          "accent": "teal",
+          "path": "/hydrosos",
+          "repository": "geoglows/rfs-v2-hydrosos"
+        }
+      ]
+    },
+    {
+      "id": "groundwater",
+      "heading": "Groundwater Management",
+      "apps": [
+        {
+          "name": "GRACE Groundwater Anomalies",
+          "description": "Monitor regional groundwater storage changes based on GRACE and GRACE-FO gravity anomalies and GLDAS land surface measurements.",
+          "tags": [
+            "Groundwater",
+            "Remote Sensing",
+            "GRACE",
+            "GLDAS"
+          ],
+          "icon": "heroicon:scale",
+          "accent": "violet",
+          "path": "/grace-anomalies",
+          "repository": "geoglows/grace-gldas-groundwater-dashboard"
+        }
+      ]
+    },
+    {
+      "id": "rfs-v3-previews",
+      "heading": "RFS v3 Previews",
+      "apps": [
+        {
           "name": "River Forecast System v3 (Preview)",
           "description": "View past, current, and forecasted river conditions globally with charts, flood maps, hydrographs and analysis from the River Forecast System (RFS).",
           "tags": [
@@ -45,52 +98,6 @@
           "accent": "amber",
           "path": "/fews4all",
           "repository": "geoglows/fews4all-app"
-        },
-        {
-          "name": "HydroSOS Water Status Monitor (Preview)",
-          "description": "Monitor water status and drought conditions globally with maps and charts from the HydroSOS Water Status Monitor.",
-          "tags": [
-            "WMO",
-            "Drought Monitoring",
-            "Surface Water"
-          ],
-          "icon": "heroicon:chart-bar-square",
-          "accent": "teal",
-          "path": "/hydrosos",
-          "repository": "geoglows/rfs-v2-hydrosos"
-        }
-      ]
-    },
-    {
-      "id": "groundwater",
-      "heading": "Groundwater Management",
-      "apps": [
-        {
-          "name": "GRACE Groundwater Anomalies",
-          "description": "Monitor regional groundwater storage changes based on GRACE and GRACE-FO gravity anomaly measurements.",
-          "tags": [
-            "Groundwater",
-            "Remote Sensing",
-            "GRACE",
-            "GLDAS"
-          ],
-          "icon": "heroicon:scale",
-          "accent": "violet",
-          "path": "/grace-anomalies",
-          "repository": "geoglows/grace-gldas-groundwater-dashboard"
-        },
-        {
-          "name": "Aquifer Analyst",
-          "description": "Map and analyze your groundwater well locations and observations locally and privately on your browser.",
-          "tags": [
-            "Mapping",
-            "Analytics",
-            "In-situ Data"
-          ],
-          "icon": "heroicon:square-3-stack-3d",
-          "accent": "indigo",
-          "path": "/aquiferx",
-          "repository": "geoglows/aquiferx"
         }
       ]
     }

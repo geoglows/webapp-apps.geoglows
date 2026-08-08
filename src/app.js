@@ -4,7 +4,7 @@
 // The two things that can't be static are the theme toggle and anything
 // touching a session, and the latter lives entirely in ./auth.js.
 
-import { hydrateIcons } from "./icons.js";
+import {hydrateIcons} from "./icons.js";
 
 // Fill in every [data-icon] slot in the static markup. Icons live in one place
 // (src/icons.js, sourced from heroicons) rather than as path data pasted into

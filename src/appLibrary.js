@@ -1,6 +1,5 @@
 import config from "../apps.json";
-import { heroicon, iconSvg, register } from "./icons.js";
-import { htmlHref } from "./urls.js";
+import {heroicon, iconSvg, register} from "./icons.js";
 
 import arrowUpRight from "heroicons/24/outline/arrow-up-right.svg?raw";
 import bellAlert from "heroicons/24/outline/bell-alert.svg?raw";
@@ -39,10 +38,9 @@ const ACCENTS = {
 const FALLBACK_ACCENT = "blue";
 
 // Each app deploys itself to its own path at the site root, so an app's
-// apps.json path (/rfs-v3) is already its URL. htmlHref spells out the
-// index.html the CDN origin needs — see src/urls.js.
-const appHref = (path) =>
-  htmlHref(`/${String(path ?? "").replace(/^\/+/, "")}`);
+// apps.json path (/rfs-v3) is already its URL. The distribution resolves that
+// directory URL to the app's index.
+const appHref = (path) => `/${String(path ?? "").replace(/^\/+/, "")}`;
 
 function tagPill(text) {
   return `<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border border-blue-200 dark:border-slate-700">${text}</span>`;
@@ -56,10 +54,10 @@ function appCard(app) {
   return `
       <a href="${appHref(app.path)}" class="glass-card p-8 rounded-2xl flex flex-col h-full group relative overflow-hidden">
         <div class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity">
-          ${iconSvg("heroicon:arrow-up-right", { size: 24, className: "w-6 h-6 text-blue-500" })}
+          ${iconSvg("heroicon:arrow-up-right", {size: 24, className: "w-6 h-6 text-blue-500"})}
         </div>
         <div class="mb-6 p-3 rounded-xl w-fit transition-colors ${accent}">
-          ${iconSvg(app.icon, { size: 32 })}
+          ${iconSvg(app.icon, {size: 32})}
         </div>
         <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">${app.name}</h3>
         <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8 grow">${app.description}</p>

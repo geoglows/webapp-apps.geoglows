@@ -20,13 +20,13 @@ register({
 
 const FALLBACK = "heroicon:globe-europe-africa";
 
-export function iconSvg(name, { size = 24 } = {}) {
+export function iconSvg(name, {size = 24} = {}) {
   const render = ICONS[name] ?? ICONS[FALLBACK];
   return render ? render(`width="${size}" height="${size}" aria-hidden="true"`) : "";
 }
 
 export function hydrateIcons(root = document) {
   for (const el of root.querySelectorAll("[data-icon]")) {
-    el.innerHTML = iconSvg(el.dataset.icon, { size: Number(el.dataset.iconSize) || 24 });
+    el.innerHTML = iconSvg(el.dataset.icon, {size: Number(el.dataset.iconSize) || 24});
   }
 }

@@ -11,10 +11,11 @@
 # CLOUDFRONT_DISTRIBUTION_ID
 #
 # The distribution's origin is the S3 REST endpoint, which serves object keys
-# literally — /rfs-v3 is a 404 even though /rfs-v3/index.html exists. A
-# CloudFront Function rewrites directory URLs to their index so links stay
-# clean; it is attached once by scripts/setup-cloudfront-function.sh and this
-# script never touches it.
+# literally — /rfs-v3 would be a 404 even though /rfs-v3/index.html exists. A
+# viewer-request function on the distribution rewrites an extensionless URL to
+# <path>/index.html so links stay clean. It is configured on the distribution
+# itself, not here, and this script never touches it. It does mean every page
+# must be published as <name>/index.html to be reachable without a .html.
 
 set -euo pipefail
 
@@ -37,10 +38,19 @@ aws s3 sync dist/ "$dest" --no-progress --exclude "*" --include "*.html" --cache
 # Delete whatever this build no longer produces. Uploads are already done above,
 # so this pass only removes. At the site root the app directories sit alongside
 # the landing page's own files, so the sweep is narrowed to what the landing
-# page owns: "*/*" drops every subdirectory, then "assets/*" adds back its own.
-# That pattern is anchored, so it never matches rfs-v3/assets/... .
+# page owns: "*/*" drops every subdirectory, then each directory this build
+# actually produced is added back. Those patterns are anchored, so they never
+# match rfs-v3/assets/... . Deriving them from dist/ rather than naming them
+# keeps a new page directory (assets/, profile/, terms/, licenses/, ...) swept
+# without editing this script.
 sweep=(--delete)
-[ "$base" = "/" ] && sweep+=(--exclude "*/*" --include "assets/*")
+if [ "$base" = "/" ]; then
+  sweep+=(--exclude "*/*")
+  for d in dist/*/; do
+    [ -d "$d" ] || continue                  # no match: the glob stayed literal
+    sweep+=(--include "$(basename "$d")/*")
+  done
+fi
 
 echo "==> sweeping $dest"
 aws s3 sync dist/ "$dest" --no-progress "${sweep[@]}"
