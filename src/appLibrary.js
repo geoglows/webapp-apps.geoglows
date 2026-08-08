@@ -1,6 +1,6 @@
 import config from "../apps.json";
 import { heroicon, iconSvg, register } from "./icons.js";
-import { explicitHtml } from "./urls.js";
+import { htmlHref } from "./urls.js";
 
 import arrowUpRight from "heroicons/24/outline/arrow-up-right.svg?raw";
 import bellAlert from "heroicons/24/outline/bell-alert.svg?raw";
@@ -39,11 +39,10 @@ const ACCENTS = {
 const FALLBACK_ACCENT = "blue";
 
 // Each app deploys itself to its own path at the site root, so an app's
-// apps.json path (/rfs-v3) is already its URL. VITE_EXPLICIT_HTML spells out
-// the index.html for hosts (a bare CDN origin) that don't resolve a directory
-// URL to its index — see explicitHtml in src/urls.js.
+// apps.json path (/rfs-v3) is already its URL. htmlHref spells out the
+// index.html the CDN origin needs — see src/urls.js.
 const appHref = (path) =>
-  explicitHtml(`/${String(path ?? "").replace(/^\/+/, "")}`);
+  htmlHref(`/${String(path ?? "").replace(/^\/+/, "")}`);
 
 function tagPill(text) {
   return `<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border border-blue-200 dark:border-slate-700">${text}</span>`;

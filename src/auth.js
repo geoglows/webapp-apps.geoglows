@@ -19,7 +19,7 @@ import {
   renderAuthAction,
   updateProfile,
 } from "@geoglows/geoglows-auth/core";
-import { explicitHtml } from "./urls.js";
+import { htmlHref } from "./urls.js";
 
 const supabase = createGeoglowsSupabaseClient({
   url: import.meta.env.VITE_SUPABASE_URL,
@@ -31,8 +31,10 @@ const portalRoot = window.location.origin;
 
 // Bare portal root, not root+pathname: mountSignInModal passes its own redirect
 // targets (both defaulting to it), and from /profile this fallback
-// would otherwise resolve to a URL that isn't in the Supabase allowlist.
-const portalHome = explicitHtml(portalRoot);
+// would otherwise resolve to a URL that isn't in the Supabase allowlist. No
+// index.html here either — the CDN resolves the site root itself (default root
+// object), and the origin as-is is what the allowlist holds.
+const portalHome = portalRoot;
 const auth = createSupabaseAuthAdapter({
   supabase,
   defaultRedirectTo: portalHome,
@@ -174,7 +176,7 @@ function setState(patch) {
 
 function render() {
   slot.innerHTML = renderAuthAction(state, {
-    profileHref: explicitHtml(`${portalRoot}/profile`, { page: true }),
+    profileHref: htmlHref(`${portalRoot}/profile`, { page: true }),
   });
   slot.querySelector("#geoglowsSignIn")?.addEventListener("click", () => modal.open());
   slot.querySelector("#geoglowsSignOut")?.addEventListener("click", signOut);

@@ -11,12 +11,12 @@
             "RFS",
             "Surface Water",
             "Forecasting",
-            "Flood Extent Maps (FIM)"
+            "Flood Inundation Maps (FIM)"
           ],
           "icon": "heroicon:globe-europe-africa",
           "accent": "blue",
           "path": "/rfs-v3",
-          "repository": "rileyhales/rfs-v3-app"
+          "repository": "river-forecasts-system/rfs-v3-app"
         },
         {
           "name": "RFS Hydrography Explorer (Preview)",
@@ -30,7 +30,7 @@
           "icon": "heroicon:map",
           "accent": "cyan",
           "path": "/rfs-hydrography-explorer",
-          "repository": "rileyhales/rfs-hydrography-explorer"
+          "repository": "river-forecast-system/rfs-hydrography-explorer"
         },
         {
           "name": "Flood Early Warnings for All (Preview)",

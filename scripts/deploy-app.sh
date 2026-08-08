@@ -9,6 +9,12 @@
 # AWS_SECRET_ACCESS_KEY
 # S3_BUCKET_NAME
 # CLOUDFRONT_DISTRIBUTION_ID
+#
+# The distribution's origin is the S3 REST endpoint, which serves object keys
+# literally — /rfs-v3 is a 404 even though /rfs-v3/index.html exists. A
+# CloudFront Function rewrites directory URLs to their index so links stay
+# clean; it is attached once by scripts/setup-cloudfront-function.sh and this
+# script never touches it.
 
 set -euo pipefail
 
