@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Open Source Licenses | GEOGLOWS</title>
+  <meta name="description" content="The open source software the GEOGLOWS applications are built on, and the license each package is distributed under."/>
+  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)"/>
+  <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)"/>
+
+  <link rel="icon" type="image/png" href="/favicon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/src/style.css"/>
+
+  <script>
+    try {
+      const stored = localStorage.getItem('theme');
+      if (stored === 'dark' || (!stored && matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    } catch (e) { /* private mode */
+    }
+  </script>
+</head>
+<body>
+<div class="min-h-screen text-slate-800 dark:text-slate-200 water-mesh flex flex-col">
+
+  <nav class="w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200 dark:border-white/5 py-4">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <a href="./index.html" class="flex h-12 items-center overflow-hidden hover:opacity-80 transition-opacity">
+        <img src="/geoglows-logo.png" alt="GEOGLOWS" class="w-44 dark:hidden"/>
+        <img src="/geoglows-logo-white.png" alt="GEOGLOWS" class="w-44 hidden dark:block"/>
+      </a>
+      <button id="theme-toggle" aria-label="Toggle theme"
+              class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+        <span data-icon="heroicon:moon" data-icon-size="20" class="dark:hidden"></span>
+        <span data-icon="heroicon:sun" data-icon-size="20" class="hidden dark:block"></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-6 py-12 grow w-full">
+    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
+      <span class="gradient-text">Open Source Licenses</span>
+    </h1>
+    <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-10">
+      GEOGLOWS is grateful for many generous members of the open source software community who create
+      and maintain code, usually unpaid. This page gives the required attributions, license details,
+      and links to those packages. For more current versions, consult the GitHub repositories and the
+      package-lock.json files.
+    </p>
+
+    <section class="glass-card rounded-2xl p-6 md:p-8 mb-8">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-500 mb-3">Esri copyright notice</h2>
+      <div class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed space-y-3">
+        <p>
+          <a href="https://unpkg.com/@arcgis/core@5.1.11/LICENSE.md" target="_blank" rel="noopener" class="font-mono text-blue-600 dark:text-blue-400 hover:underline">@arcgis/core</a>, <a href="https://unpkg.com/@arcgis/map-components@5.1.11/LICENSE.md" target="_blank" rel="noopener" class="font-mono text-blue-600 dark:text-blue-400 hover:underline">@arcgis/map-components</a>, <a href="https://unpkg.com/@esri/calcite-components@5.1.2/LICENSE.md" target="_blank" rel="noopener" class="font-mono text-blue-600 dark:text-blue-400 hover:underline">@esri/calcite-components</a>, <a href="https://unpkg.com/@esri/calcite-ui-icons@4.5.0/LICENSE.md" target="_blank" rel="noopener" class="font-mono text-blue-600 dark:text-blue-400 hover:underline">@esri/calcite-ui-icons</a> are not open source. They are licensed for use under the
+          <a href="https://www.esri.com/content/dam/esrisites/en-us/media/legal/ma-full/ma-full.pdf" class="text-blue-600 dark:text-blue-400 hover:underline font-semibold" target="_blank" rel="noopener">Esri Master License Agreement</a>,
+          which permits redistribution without modification provided the terms of that agreement are
+          followed and Esri's copyright notice is included. We redistribute them unmodified.
+        </p>
+        <p class="italic text-slate-600 dark:text-slate-400">
+          Copyright Esri. All rights reserved under the copyright laws of the United States and
+          applicable international laws, treaties, and conventions.
+        </p>
+      </div>
+    </section>
+
+    <section class="glass-card rounded-2xl p-6 md:p-8">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-500">
+          Packages used (47)
+        </h2>
+        <p class="text-xs text-slate-500 dark:text-slate-500">
+          36 bundled into the applications; 8 build tools and 3 type declarations that never reach a browser
+        </p>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[38rem] text-left border-collapse">
+          <thead>
+            <tr class="border-b border-slate-300 dark:border-slate-700">
+              <th class="py-2 pr-4 text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-500">Package</th>
+              <th class="py-2 pr-4 text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-500">Version</th>
+              <th class="py-2 pr-4 text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-500">License</th>
+              <th class="py-2 text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-500">Used by</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">@arcgis/core</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">5.1.11</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/@arcgis/core@5.1.11/LICENSE.md" target="_blank" rel="noopener" title="Read the license for @arcgis/core (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-amber-100 dark:bg-amber-500/10 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-500/20 hover:bg-amber-200 dark:hover:bg-amber-500/20">Esri Master License Agreement</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-600 dark:text-slate-400">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">@arcgis/map-components</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">5.1.11</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/@arcgis/map-components@5.1.11/LICENSE.md" target="_blank" rel="noopener" title="Read the license for @arcgis/map-components (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-amber-100 dark:bg-amber-500/10 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-500/20 hover:bg-amber-200 dark:hover:bg-amber-500/20">Esri Master License Agreement</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-600 dark:text-slate-400">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">@esri/calcite-components</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">5.1.2</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/@esri/calcite-components@5.1.2/LICENSE.md" target="_blank" rel="noopener" title="Read the license for @esri/calcite-components (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-amber-100 dark:bg-amber-500/10 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-500/20 hover:bg-amber-200 dark:hover:bg-amber-500/20">Esri Master License Agreement</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-600 dark:text-slate-400">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">@esri/calcite-ui-icons</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">4.5.0</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/@esri/calcite-ui-icons@4.5.0/LICENSE.md" target="_blank" rel="noopener" title="Read the license for @esri/calcite-ui-icons (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-amber-100 dark:bg-amber-500/10 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-500/20 hover:bg-amber-200 dark:hover:bg-amber-500/20">Esri Master License Agreement</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-600 dark:text-slate-400">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">@esri/maplibre-arcgis</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">1.3.0</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/@esri/maplibre-arcgis@1.3.0/LICENSE" target="_blank" rel="noopener" title="Read the license for @esri/maplibre-arcgis (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">Apache-2.0</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-600 dark:text-slate-400">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">@geoglows/geoglows-auth</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">1.7.2</td>
+            <td class="py-3 pr-4 align-top"><a href="https://github.com/geoglows/geoglows-auth" target="_blank" rel="noopener" title="Read the license for @geoglows/geoglows-auth (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-600 dark:text-slate-400">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-600 dark:text-slate-400">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">chart.js</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">4.5.1</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/chart.js@4.5.1/LICENSE.md" target="_blank" rel="noopener" title="Read the license for chart.js (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-600 dark:text-slate-400">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-600 dark:text-slate-400">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">chartjs-adapter-date-fns</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">3.0.0</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/chartjs-adapter-date-fns@3.0.0/LICENSE.md" target="_blank" rel="noopener" title="Read the license for chartjs-adapter-date-fns (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-600 dark:text-slate-400">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-600 dark:text-slate-400">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">chartjs-chart-matrix</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">3.0.5</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/chartjs-chart-matrix@3.0.5/LICENSE" target="_blank" rel="noopener" title="Read the license for chartjs-chart-matrix (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-600 dark:text-slate-400">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">chartjs-plugin-zoom</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">2.2.0</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/chartjs-plugin-zoom@2.2.0/LICENSE.md" target="_blank" rel="noopener" title="Read the license for chartjs-plugin-zoom (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-600 dark:text-slate-400">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">date-fns</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">4.4.0</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/date-fns@4.4.0/LICENSE.md" target="_blank" rel="noopener" title="Read the license for date-fns (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-600 dark:text-slate-400">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-600 dark:text-slate-400">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">georaster</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">1.6.0</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/georaster@1.6.0/LICENSE" target="_blank" rel="noopener" title="Read the license for georaster (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">Apache-2.0</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-600 dark:text-slate-400">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">georaster-layer-for-leaflet</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">4.1.2</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/georaster-layer-for-leaflet@4.1.2/LICENSE" target="_blank" rel="noopener" title="Read the license for georaster-layer-for-leaflet (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">Apache-2.0</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-600 dark:text-slate-400">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">heroicons</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">2.2.0</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/heroicons@2.2.0/LICENSE" target="_blank" rel="noopener" title="Read the license for heroicons (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-600 dark:text-slate-400">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-600 dark:text-slate-400">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-600 dark:text-slate-400">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">hyparquet</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">1.27.1</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/hyparquet@1.27.1/LICENSE" target="_blank" rel="noopener" title="Read the license for hyparquet (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-600 dark:text-slate-400">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">hyparquet-compressors</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">1.1.1</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/hyparquet-compressors@1.1.1/LICENSE" target="_blank" rel="noopener" title="Read the license for hyparquet-compressors (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-600 dark:text-slate-400">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">hyparquet-writer</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">0.16.5</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/hyparquet-writer@0.16.5/LICENSE" target="_blank" rel="noopener" title="Read the license for hyparquet-writer (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-600 dark:text-slate-400">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">iconify-icon</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">3.0.2</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/iconify-icon@3.0.2/LICENSE.txt" target="_blank" rel="noopener" title="Read the license for iconify-icon (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-600 dark:text-slate-400">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">jszip</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">3.10.1</td>
+            <td class="py-3 pr-4 align-top"><a href="https://github.com/Stuk/jszip" target="_blank" rel="noopener" title="Read the license for jszip (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700">(MIT OR GPL-3.0-or-later)</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">kd-tree-javascript</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">1.0.3</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/kd-tree-javascript@1.0.3/LICENCE" target="_blank" rel="noopener" title="Read the license for kd-tree-javascript (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">leaflet</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">1.9.4</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/leaflet@1.9.4/LICENSE" target="_blank" rel="noopener" title="Read the license for leaflet (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">BSD-2-Clause</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-600 dark:text-slate-400">Flood Early Warnings for All</li>
+              <li class="text-slate-600 dark:text-slate-400">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">lucide-react</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">0.563.0</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/lucide-react@0.563.0/LICENSE" target="_blank" rel="noopener" title="Read the license for lucide-react (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">ISC</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">maplibre-gl</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">6.0.0</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/maplibre-gl@6.0.0/LICENSE.txt" target="_blank" rel="noopener" title="Read the license for maplibre-gl (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">BSD-3-Clause</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-600 dark:text-slate-400">River Forecast System v3</li>
+              <li class="text-slate-600 dark:text-slate-400">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">ml-matrix</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">6.12.1</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/ml-matrix@6.12.1/LICENSE" target="_blank" rel="noopener" title="Read the license for ml-matrix (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">numcodecs</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">0.3.2</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/numcodecs@0.3.2/LICENSE" target="_blank" rel="noopener" title="Read the license for numcodecs (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-600 dark:text-slate-400">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">plotly.js-dist-min</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">3.7.0</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/plotly.js-dist-min@3.7.0/LICENSE" target="_blank" rel="noopener" title="Read the license for plotly.js-dist-min (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-600 dark:text-slate-400">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">pmtiles</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">4.4.1</td>
+            <td class="py-3 pr-4 align-top"><a href="https://github.com/protomaps/pmtiles" target="_blank" rel="noopener" title="Read the license for pmtiles (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">BSD-3-Clause</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-600 dark:text-slate-400">River Forecast System v3</li>
+              <li class="text-slate-600 dark:text-slate-400">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">polylabel</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">2.0.1</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/polylabel@2.0.1/LICENSE" target="_blank" rel="noopener" title="Read the license for polylabel (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">ISC</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">proj4</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">2.20.3</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/proj4@2.20.3/LICENSE.md" target="_blank" rel="noopener" title="Read the license for proj4 (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">react</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">19.2.4</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/react@19.2.4/LICENSE" target="_blank" rel="noopener" title="Read the license for react (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">react-dom</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">19.2.4</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/react-dom@19.2.4/LICENSE" target="_blank" rel="noopener" title="Read the license for react-dom (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">react-is</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">19.2.4</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/react-is@19.2.4/LICENSE" target="_blank" rel="noopener" title="Read the license for react-is (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">recharts</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">3.7.0</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/recharts@3.7.0/LICENSE" target="_blank" rel="noopener" title="Read the license for recharts (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">rfsjs</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">0.1.0</td>
+            <td class="py-3 pr-4 align-top"><a href="https://github.com/river-forecast-system/npmjs-riverforecastsystem" target="_blank" rel="noopener" title="Read the license for rfsjs (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">ISC</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-600 dark:text-slate-400">River Forecast System v3</li>
+              <li class="text-slate-600 dark:text-slate-400">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">shpjs</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">6.2.0</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/shpjs@6.2.0/LICENSE.md" target="_blank" rel="noopener" title="Read the license for shpjs (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">zarrita</td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">0.7.4</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/zarrita@0.7.4/LICENSE" target="_blank" rel="noopener" title="Read the license for zarrita (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-600 dark:text-slate-400">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-600 dark:text-slate-400">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">@tailwindcss/vite<span class="ml-2 text-[0.65rem] uppercase tracking-wider text-slate-400 dark:text-slate-500">build only</span></td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">4.2.4</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/@tailwindcss/vite@4.2.4/LICENSE" target="_blank" rel="noopener" title="Read the license for @tailwindcss/vite (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-600 dark:text-slate-400">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-600 dark:text-slate-400">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-600 dark:text-slate-400">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">@vitejs/plugin-react<span class="ml-2 text-[0.65rem] uppercase tracking-wider text-slate-400 dark:text-slate-500">build only</span></td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">5.1.4</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/@vitejs/plugin-react@5.1.4/LICENSE" target="_blank" rel="noopener" title="Read the license for @vitejs/plugin-react (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">autoprefixer<span class="ml-2 text-[0.65rem] uppercase tracking-wider text-slate-400 dark:text-slate-500">build only</span></td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">10.5.0</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/autoprefixer@10.5.0/LICENSE" target="_blank" rel="noopener" title="Read the license for autoprefixer (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">postcss<span class="ml-2 text-[0.65rem] uppercase tracking-wider text-slate-400 dark:text-slate-500">build only</span></td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">8.5.15</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/postcss@8.5.15/LICENSE" target="_blank" rel="noopener" title="Read the license for postcss (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">tailwindcss<span class="ml-2 text-[0.65rem] uppercase tracking-wider text-slate-400 dark:text-slate-500">build only</span></td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">4.2.4</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/tailwindcss@4.2.4/LICENSE" target="_blank" rel="noopener" title="Read the license for tailwindcss (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-600 dark:text-slate-400">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-600 dark:text-slate-400">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-600 dark:text-slate-400">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">typescript<span class="ml-2 text-[0.65rem] uppercase tracking-wider text-slate-400 dark:text-slate-500">build only</span></td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">5.8.3</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/typescript@5.8.3/LICENSE.txt" target="_blank" rel="noopener" title="Read the license for typescript (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">Apache-2.0</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">vite<span class="ml-2 text-[0.65rem] uppercase tracking-wider text-slate-400 dark:text-slate-500">build only</span></td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">8.1.4</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/vite@8.1.4/LICENSE.md" target="_blank" rel="noopener" title="Read the license for vite (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-600 dark:text-slate-400">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-600 dark:text-slate-400">River Forecast System v3</li>
+              <li class="text-slate-600 dark:text-slate-400">RFS Hydrography Explorer</li>
+              <li class="text-slate-600 dark:text-slate-400">Flood Early Warnings for All</li>
+              <li class="text-slate-600 dark:text-slate-400">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-600 dark:text-slate-400">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">vitest<span class="ml-2 text-[0.65rem] uppercase tracking-wider text-slate-400 dark:text-slate-500">build only</span></td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">4.1.10</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/vitest@4.1.10/LICENSE.md" target="_blank" rel="noopener" title="Read the license for vitest (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-600 dark:text-slate-400">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">@types/leaflet<span class="ml-2 text-[0.65rem] uppercase tracking-wider text-slate-400 dark:text-slate-500">dev only</span></td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">1.9.21</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/@types/leaflet@1.9.21/LICENSE" target="_blank" rel="noopener" title="Read the license for @types/leaflet (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">@types/node<span class="ml-2 text-[0.65rem] uppercase tracking-wider text-slate-400 dark:text-slate-500">dev only</span></td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">22.19.13</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/@types/node@22.19.13/LICENSE" target="_blank" rel="noopener" title="Read the license for @types/node (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          <tr class="border-b border-slate-200/70 dark:border-slate-800 last:border-0">
+            <td class="py-3 pr-4 font-mono text-sm text-slate-800 dark:text-slate-200 align-top">@types/proj4<span class="ml-2 text-[0.65rem] uppercase tracking-wider text-slate-400 dark:text-slate-500">dev only</span></td>
+            <td class="py-3 pr-4 text-xs text-slate-500 dark:text-slate-500 tabular-nums align-top whitespace-nowrap">2.5.6</td>
+            <td class="py-3 pr-4 align-top"><a href="https://unpkg.com/@types/proj4@2.5.6/LICENSE" target="_blank" rel="noopener" title="Read the license for @types/proj4 (opens in a new tab)" class="inline-block transition-colors text-xs font-medium px-2.5 py-0.5 rounded-full border whitespace-nowrap bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-slate-300 border-blue-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700">MIT</a></td>
+            <td class="py-3 text-xs align-top"><ul class="list-disc list-inside space-y-0.5 marker:text-slate-300 dark:marker:text-slate-700">
+              <li class="text-slate-300 dark:text-slate-700 line-through">GEOGLOWS Apps Portal</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">River Forecast System v3</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">RFS Hydrography Explorer</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">Flood Early Warnings for All</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">HydroSOS Water Status Monitor</li>
+              <li class="text-slate-300 dark:text-slate-700 line-through">GRACE Groundwater Anomalies</li>
+              <li class="text-slate-600 dark:text-slate-400">Aquifer Analyst</li>
+            </ul></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mt-20 border-t border-slate-200 dark:border-slate-800 py-16 px-4 bg-white/50 dark:bg-transparent">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="border-slate-200 dark:border-slate-900 text-slate-500 dark:text-slate-300 text-xs">
+        <p>
+          &copy; 2026 GEOGLOWS
+          <span aria-hidden="true" class="mx-2">&middot;</span>
+          <a href="./terms.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Terms &amp; Conditions</a>
+          <span aria-hidden="true" class="mx-2">&middot;</span>
+          <a href="./licenses.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Open Source Licenses</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script type="module" src="/src/app.js"></script>
+</body>
+</html>

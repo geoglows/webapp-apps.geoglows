@@ -6,7 +6,7 @@
 // this file only sets textContent, sets input values, and flips [hidden].
 // That is why nothing needs escaping.
 
-import "@aquaveo/geoglows-auth/core/sign-in.css";
+import "@geoglows/geoglows-auth/core/sign-in.css";
 import {
   bootstrapSession,
   createGeoglowsSupabaseClient,
@@ -18,17 +18,16 @@ import {
   mountSignInModal,
   renderAuthAction,
   updateProfile,
-} from "@aquaveo/geoglows-auth/core";
-import { basePath, explicitHtml } from "./urls.js";
+} from "@geoglows/geoglows-auth/core";
+import { explicitHtml } from "./urls.js";
 
 const supabase = createGeoglowsSupabaseClient({
   url: import.meta.env.VITE_SUPABASE_URL,
   publishableKey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
 });
 
-// The portal root: the origin, plus the build's base path when the whole
-// portal is served under a sub-path (PORTAL_BASE=/portal -> /portal/).
-const portalRoot = window.location.origin + basePath();
+// The portal is served from the domain root, so its root is just the origin.
+const portalRoot = window.location.origin;
 
 // Bare portal root, not root+pathname: mountSignInModal passes its own redirect
 // targets (both defaulting to it), and from /profile this fallback

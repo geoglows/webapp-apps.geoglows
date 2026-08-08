@@ -1,5 +1,3 @@
-export const basePath = () => import.meta.env.BASE_URL.replace(/\/+$/, "");
-
 const EXPLICIT = ["1", "true"].includes(
   String(import.meta.env.VITE_EXPLICIT_HTML ?? "").toLowerCase(),
 );

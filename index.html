@@ -48,20 +48,10 @@
           <div id="authActionSlot"></div>
           <button id="theme-toggle" aria-label="Toggle theme"
                   class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="dark:hidden">
-              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hidden dark:block">
-              <circle cx="12" cy="12" r="4"/>
-              <path d="M12 2v2"/>
-              <path d="M12 20v2"/>
-              <path d="m4.93 4.93 1.41 1.41"/>
-              <path d="m17.66 17.66 1.41 1.41"/>
-              <path d="M2 12h2"/>
-              <path d="M20 12h2"/>
-              <path d="m6.34 17.66-1.41 1.41"/>
-              <path d="m19.07 4.93-1.41 1.41"/>
-            </svg>
+            <!-- Filled in from the icon set by src/icons.js; both are in the
+                 markup and swapped by CSS, so the theme never flashes. -->
+            <span data-icon="heroicon:moon" data-icon-size="20" class="dark:hidden"></span>
+            <span data-icon="heroicon:sun" data-icon-size="20" class="hidden dark:block"></span>
           </button>
         </div>
       </div>
@@ -96,6 +86,8 @@
           &copy; 2026 GEOGLOWS
           <span aria-hidden="true" class="mx-2">&middot;</span>
           <a href="./terms.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Terms &amp; Conditions</a>
+          <span aria-hidden="true" class="mx-2">&middot;</span>
+          <a href="./licenses.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Open Source Licenses</a>
         </p>
       </div>
     </div>
