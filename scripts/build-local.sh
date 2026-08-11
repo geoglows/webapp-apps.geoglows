@@ -34,7 +34,7 @@ while read -r slug repo; do
     continue
   fi
   echo "==> /${slug}  <-  ${dir}"
-  if ! (cd "$dir" && npx vite build --base="/${slug}/"); then
+  if ! (cd "$dir" && npm ci && npx vite build --base="/${slug}/"); then
     echo "!!  /${slug} failed to build — skipping"
     continue
   fi
@@ -68,3 +68,5 @@ fi
 
 echo ""
 echo "==> done — preview with: npx serve _site"
+echo "If you plan to deploy manually, pass --analytics to include the Google tag."
+echo "Then sync with s5cmd sync --delete _site/ s3://apps-geoglows/"

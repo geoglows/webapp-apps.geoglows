@@ -59,4 +59,5 @@ fi
 echo "source: $DATA_DIR"
 echo "dest:   $DEST"
 
+echo "Running command: s5cmd sync --delete ${EXCLUDES[*]} $DATA_DIR/ $DEST/"
 s5cmd sync --delete "${EXCLUDES[@]}" "$DATA_DIR/" "$DEST/"
