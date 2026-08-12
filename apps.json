@@ -29,7 +29,7 @@
           "icon": "heroicon:chart-bar-square",
           "accent": "teal",
           "path": "/hydrosos",
-          "repository": "geoglows/rfs-v2-hydrosos"
+          "repository": "geoglows/webapp-rfs-hydrosos"
         }
       ]
     },
@@ -38,7 +38,7 @@
       "heading": "Groundwater Management",
       "apps": [
         {
-          "name": "GRACE Groundwater Anomalies",
+          "name": "GRACE Regional Analyst",
           "description": "Monitor regional groundwater storage changes based on GRACE and GRACE-FO gravity anomalies and GLDAS land surface measurements.",
           "tags": [
             "Groundwater",
@@ -49,13 +49,13 @@
           "icon": "heroicon:scale",
           "accent": "violet",
           "path": "/grace-anomalies",
-          "repository": "geoglows/grace-gldas-groundwater-dashboard"
+          "repository": "geoglows/webapp-grace-groundwater"
         }
       ]
     },
     {
-      "id": "rfs-v3-previews",
-      "heading": "RFS v3 Previews",
+      "id": "previews",
+      "heading": "Public Previews",
       "apps": [
         {
           "name": "River Forecast System v3 (Preview)",
@@ -69,7 +69,7 @@
           "icon": "heroicon:globe-europe-africa",
           "accent": "blue",
           "path": "/rfs-v3",
-          "repository": "river-forecasts-system/rfs-v3-app"
+          "repository": "geoglows/webapp-rfs-v3"
         },
         {
           "name": "RFS Hydrography Explorer (Preview)",
@@ -83,7 +83,7 @@
           "icon": "heroicon:map",
           "accent": "cyan",
           "path": "/rfs-hydrography",
-          "repository": "river-forecast-system/rfs-hydrography-explorer"
+          "repository": "geoglows/webapp-rfs-hydrography"
         },
         {
           "name": "Flood Early Warnings for All (Preview)",
@@ -97,7 +97,7 @@
           "icon": "heroicon:bell-alert",
           "accent": "amber",
           "path": "/fews4all",
-          "repository": "geoglows/fews4all-app"
+          "repository": "geoglows/webapp-fews4all"
         }
       ]
     }
