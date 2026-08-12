@@ -5,19 +5,29 @@
   "installCommand": "npm install",
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/grace-groundwater", "destination": "https://grace-groundwater-dashboard.vercel.app/" },
-    { "source": "/grace-groundwater/", "destination": "https://grace-groundwater-dashboard.vercel.app/" },
-    { "source": "/grace-groundwater/:path+", "destination": "https://grace-groundwater-dashboard.vercel.app/:path+" },
-    { "source": "/hydroviewer", "destination": "https://rfs-v2-hydroviewer.vercel.app/" },
-    { "source": "/hydroviewer/", "destination": "https://rfs-v2-hydroviewer.vercel.app/" },
-    { "source": "/hydroviewer/:path+", "destination": "https://rfs-v2-hydroviewer.vercel.app/:path+" },
-    { "source": "/aquifer-analyst", "destination": "https://aquiferx-bay.vercel.app/" },
-    { "source": "/aquifer-analyst/", "destination": "https://aquiferx-bay.vercel.app/" },
-    { "source": "/aquifer-analyst/:path+", "destination": "https://aquiferx-bay.vercel.app/:path+" }
-  ],
-  "git": {
-    "deploymentEnabled": {
-      "main": true
+    {
+      "source": "/grace-groundwater",
+      "destination": "https://grace-groundwater-dashboard.vercel.app/"
+    },
+    {
+      "source": "/grace-groundwater/",
+      "destination": "https://grace-groundwater-dashboard.vercel.app/"
+    },
+    {
+      "source": "/grace-groundwater/:path+",
+      "destination": "https://grace-groundwater-dashboard.vercel.app/:path+"
+    },
+    {
+      "source": "/hydroviewer",
+      "destination": "https://rfs-v2-hydroviewer.vercel.app/"
+    },
+    {
+      "source": "/hydroviewer/",
+      "destination": "https://rfs-v2-hydroviewer.vercel.app/"
+    },
+    {
+      "source": "/hydroviewer/:path+",
+      "destination": "https://rfs-v2-hydroviewer.vercel.app/:path+"
     }
-  }
+  ]
 }
