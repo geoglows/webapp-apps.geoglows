@@ -1,0 +1,105 @@
+{
+  "groups": [
+    {
+      "id": "surface-water",
+      "heading": "Rivers & Surface Water",
+      "apps": [
+        {
+          "name": "River Forecast System v2",
+          "description": "View past, current, and forecasted river conditions globally with maps and charts from the River Forecast System (RFS).",
+          "tags": [
+            "RFS",
+            "Surface Water",
+            "Forecasting",
+            "Flood Prediction"
+          ],
+          "icon": "heroicon:globe-europe-africa",
+          "accent": "blue",
+          "path": "/rfs",
+          "repository": "geoglows/rfs-v2-hydroviewer"
+        },
+        {
+          "name": "HydroSOS Water Monitor",
+          "description": "Monitor water status and drought conditions globally with maps and charts from the HydroSOS Water Status Monitor.",
+          "tags": [
+            "WMO",
+            "Drought Monitoring",
+            "Surface Water"
+          ],
+          "icon": "heroicon:chart-bar-square",
+          "accent": "teal",
+          "path": "/hydrosos",
+          "repository": "geoglows/webapp-rfs-hydrosos"
+        }
+      ]
+    },
+    {
+      "id": "groundwater",
+      "heading": "Groundwater Management",
+      "apps": [
+        {
+          "name": "GRACE Regional Analyst",
+          "description": "Monitor regional groundwater storage changes based on GRACE and GRACE-FO gravity anomalies and GLDAS land surface measurements.",
+          "tags": [
+            "Groundwater",
+            "Remote Sensing",
+            "GRACE",
+            "GLDAS"
+          ],
+          "icon": "heroicon:scale",
+          "accent": "violet",
+          "path": "/grace-anomalies",
+          "repository": "geoglows/webapp-grace-groundwater"
+        }
+      ]
+    },
+    {
+      "id": "previews",
+      "heading": "Public Previews",
+      "apps": [
+        {
+          "name": "River Forecast System v3 (Preview)",
+          "description": "View past, current, and forecasted river conditions globally with charts, flood maps, hydrographs and analysis from the River Forecast System (RFS).",
+          "tags": [
+            "RFS",
+            "Surface Water",
+            "Forecasting",
+            "Flood Inundation Maps (FIM)"
+          ],
+          "icon": "heroicon:globe-europe-africa",
+          "accent": "blue",
+          "path": "/rfs-v3",
+          "repository": "geoglows/webapp-rfs-v3"
+        },
+        {
+          "name": "RFS Hydrography Explorer (Preview)",
+          "description": "Subset hydrography to an AOI and download as GeoParquet. Experiment with styling and filtering choices.",
+          "tags": [
+            "RFS",
+            "Hydrography",
+            "Subsetting",
+            "GeoParquet"
+          ],
+          "icon": "heroicon:map",
+          "accent": "cyan",
+          "path": "/rfs-hydrography",
+          "repository": "geoglows/webapp-rfs-hydrography"
+        },
+        {
+          "name": "Flood Early Warnings for All (Preview)",
+          "description": "Compare early warning systems for floods worldwide with data from national, regional, and global hydrology models.",
+          "tags": [
+            "EW4All",
+            "Flood Forecasting",
+            "Disaster Risk Reduction",
+            "Global Collaborative"
+          ],
+          "icon": "heroicon:bell-alert",
+          "accent": "amber",
+          "path": "/fews4all",
+          "repository": "geoglows/webapp-fews4all"
+        }
+      ]
+    }
+  ]
+}
