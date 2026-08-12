@@ -1,0 +1,44 @@
+# Copy to .github/workflows/deploy.yml in an app repo and change app_path.
+# That is the only edit. Not in workflows/ here, so it never runs in this repo.
+#
+# Set once at the organisation level, so an app repo configures nothing:
+#
+#   variables  S3_BUCKET_NAME, CLOUDFRONT_DISTRIBUTION_ID
+#   secrets    AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+#
+# Variables resolve in the shared workflow on their own; the secrets arrive via
+# `secrets: inherit` below. Give the IAM user only what the deploy needs:
+#
+#   s3:PutObject, s3:DeleteObject  on arn:aws:s3:::apps-geoglows/*
+#   s3:ListBucket                  on arn:aws:s3:::apps-geoglows
+#   cloudfront:CreateInvalidation  on the one distribution
+#
+# DeleteObject is needed because each deploy syncs with --delete, and
+# ListBucket is what lets sync see which objects are no longer in the build.
+#
+# One key shared by every app means any app repo can write to any app's path,
+# so keep the org secret restricted to the repos that deploy, and rotate it on
+# a schedule and whenever someone with access leaves.
+
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Branch or tag to deploy (default: main)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    uses: geoglows/apps.geoglows/.github/workflows/deploy-app.yml@main
+    with:
+      app_path: /rfs-v3
+      ref: ${{ inputs.ref }}
+    secrets: inherit

@@ -1,0 +1,63 @@
+name: Deploy portal app
+
+# To be used by all apps that deploy to apps.geoglows including the landing page.
+# apps specify an app_path which is the location in s3 and to invalidate in cloudfront.
+
+on:
+  workflow_call:
+    inputs:
+      app_path:
+        description: 'URL path this app is served at, e.g. /rfs-v3 (or / for the landing page)'
+        type: string
+        required: true
+      ref:
+        description: 'Branch or tag to build. Empty means the ref that triggered the run.'
+        type: string
+        required: false
+        default: ''
+    secrets:
+      AWS_ACCESS_KEY_ID:
+        description: 'Organisation secret. Callers pass these with: secrets: inherit'
+        required: true
+      AWS_SECRET_ACCESS_KEY:
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-${{ inputs.app_path }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+
+      - uses: actions/checkout@v4
+        with:
+          repository: geoglows/apps.geoglows
+          path: .portal-tooling
+          sparse-checkout: scripts/deploy-app.sh
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          cache: npm
+
+      - run: npm ci
+
+      # The AWS CLI is preinstalled on the runner and reads these directly, so
+      # no credential action is involved. Region is set in the script.
+      # Bucket and distribution come from organisation variables, credentials
+      # from organisation secrets, so no app repo configures either.
+      - run: bash .portal-tooling/scripts/deploy-app.sh
+        env:
+          APP_PATH: ${{ inputs.app_path }}
+          S3_BUCKET_NAME: ${{ vars.S3_BUCKET_NAME }}
+          CLOUDFRONT_DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

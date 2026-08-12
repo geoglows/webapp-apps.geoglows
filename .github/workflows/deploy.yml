@@ -1,0 +1,26 @@
+name: Deploy landing page
+
+# The landing page deploys exactly like any other app in the portal — it is the
+# one whose path is "/". It does not build or know about the apps; each of those
+# deploys itself from its own repo.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Branch or tag to deploy (default: main)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_path: /
+      ref: ${{ inputs.ref }}
+    secrets: inherit

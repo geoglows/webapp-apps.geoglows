@@ -3,6 +3,7 @@
   "outputDirectory": "dist",
   "framework": null,
   "installCommand": "npm install",
+  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/grace-groundwater",
