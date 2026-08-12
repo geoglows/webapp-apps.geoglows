@@ -3,126 +3,124 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: 'Inter', sans-serif;
-  /* Light slate palette */
-  --color-slate-50: #f8fafc;
-  --color-slate-100: #f1f5f9;
-  --color-slate-200: #e2e8f0;
-  --color-slate-300: #cbd5e1;
-  --color-slate-400: #94a3b8;
-  --color-slate-500: #64748b;
-  --color-slate-600: #475569;
-  --color-slate-700: #334155;
-  --color-slate-800: #1e293b;
-  --color-slate-900: #0f172a;
+    --font-sans: 'Inter', sans-serif;
+    /* Light slate palette */
+    --color-slate-50: #f8fafc;
+    --color-slate-100: #f1f5f9;
+    --color-slate-200: #e2e8f0;
+    --color-slate-300: #cbd5e1;
+    --color-slate-400: #94a3b8;
+    --color-slate-500: #64748b;
+    --color-slate-600: #475569;
+    --color-slate-700: #334155;
+    --color-slate-800: #1e293b;
+    --color-slate-900: #0f172a;
 
-  /* Vibrant blue palette */
-  --color-blue-50: #eff6ff;
-  --color-blue-100: #dbeafe;
-  --color-blue-200: #bfdbfe;
-  --color-blue-400: #60a5fa;
-  --color-blue-500: #3b82f6;
-  --color-blue-600: #2563eb;
-  --color-blue-700: #1d4ed8;
+    /* Vibrant blue palette */
+    --color-blue-50: #eff6ff;
+    --color-blue-100: #dbeafe;
+    --color-blue-200: #bfdbfe;
+    --color-blue-400: #60a5fa;
+    --color-blue-500: #3b82f6;
+    --color-blue-600: #2563eb;
+    --color-blue-700: #1d4ed8;
 
-  /* Accent colors */
-  --color-cyan-400: #22d3ee;
-  --color-cyan-500: #06b6d4;
-  --color-indigo-400: #818cf8;
-  --color-indigo-500: #6366f1;
-  --color-sky-400: #38bdf8;
-  --color-sky-500: #0ea5e9;
+    /* Accent colors */
+    --color-cyan-400: #22d3ee;
+    --color-cyan-500: #06b6d4;
+    --color-indigo-400: #818cf8;
+    --color-indigo-500: #6366f1;
+    --color-sky-400: #38bdf8;
+    --color-sky-500: #0ea5e9;
 }
 
 html {
-  background-color: var(--color-slate-50);
+    background-color: var(--color-slate-50);
 }
 
 html.dark {
-  background-color: var(--color-slate-900);
+    background-color: var(--color-slate-900);
 }
 
 body {
-  background-color: var(--color-slate-50);
-  min-height: 100vh;
+    background-color: var(--color-slate-50);
+    min-height: 100vh;
 }
 
 .dark body {
-  background-color: var(--color-slate-900);
+    background-color: var(--color-slate-900);
 }
 
 ::selection {
-  background-color: var(--color-blue-500);
-  color: white;
+    background-color: var(--color-blue-500);
+    color: white;
 }
 
 /* src/auth.js shows and hides the profile panels with the [hidden] attribute.
    Beat the display utilities (flex, grid) those panels also carry. */
 [hidden] {
-  display: none !important;
+    display: none !important;
 }
 
 .glass-card {
-  background: white;
-  border: 1px solid var(--color-slate-200);
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+    border: 1px solid var(--color-slate-200);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark .glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 .glass-card:hover {
-  border-color: var(--color-blue-300);
-  box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.1), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
-  transform: translateY(-4px);
+    border-color: var(--color-blue-300);
+    box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.1), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
+    transform: translateY(-4px);
 }
 
 .dark .glass-card:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(59, 130, 246, 0.5);
-  box-shadow: none;
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: none;
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--color-blue-600) 0%, var(--color-cyan-500) 50%, var(--color-blue-500) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  padding-right: 0.05em;
-  padding-bottom: 0.05em;
+    background: linear-gradient(135deg, var(--color-blue-600) 0%, var(--color-cyan-500) 50%, var(--color-blue-500) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-right: 0.05em;
+    padding-bottom: 0.05em;
 }
 
 .dark .gradient-text {
-  background: linear-gradient(to right, #ffffff 0%, var(--color-blue-500) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
+    background: linear-gradient(to right, #ffffff 0%, var(--color-blue-500) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 .water-mesh {
-  background-color: var(--color-slate-50);
-  background-image:
-    radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0, transparent 50%),
+    background-color: var(--color-slate-50);
+    background-image: radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0, transparent 50%),
     radial-gradient(at 100% 0%, rgba(6, 182, 212, 0.15) 0, transparent 50%),
     radial-gradient(at 50% 100%, rgba(99, 102, 241, 0.1) 0, transparent 50%);
 }
 
 .dark .water-mesh {
-  background-color: var(--color-slate-900);
-  background-image:
-    radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.3) 0, transparent 50%),
+    background-color: var(--color-slate-900);
+    background-image: radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.3) 0, transparent 50%),
     radial-gradient(at 100% 0%, rgba(29, 78, 216, 0.3) 0, transparent 50%),
     radial-gradient(at 50% 100%, rgba(30, 64, 175, 0.2) 0, transparent 50%);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .glass-card,
-  .glass-card:hover {
-    transition: none;
-    transform: none;
-  }
+    .glass-card,
+    .glass-card:hover {
+        transition: none;
+        transform: none;
+    }
 }

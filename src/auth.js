@@ -1,12 +1,4 @@
-// Everything that touches a session: the Supabase client, the sign-in modal,
-// the header's auth control, and the profile form. Loaded on demand by
-// app.js, and only on pages that have an #authActionSlot.
-//
-// No HTML is built here. The markup is static in index.html / profile.html;
-// this file only sets textContent, sets input values, and flips [hidden].
-// That is why nothing needs escaping.
-
-import "@aquaveo/geoglows-auth/core/sign-in.css";
+import "@geoglows/geoglows-auth/core/sign-in.css";
 import {
   bootstrapSession,
   createGeoglowsSupabaseClient,
@@ -18,20 +10,24 @@ import {
   mountSignInModal,
   renderAuthAction,
   updateProfile,
-} from "@aquaveo/geoglows-auth/core";
+} from "@geoglows/geoglows-auth/core";
 
 const supabase = createGeoglowsSupabaseClient({
   url: import.meta.env.VITE_SUPABASE_URL,
   publishableKey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
 });
 
-// Bare origin, not origin+pathname: mountSignInModal passes its own redirect
-// targets (both defaulting to the origin), and from /profile this fallback
-// would otherwise resolve to a URL that isn't in the Supabase allowlist.
+// The portal is served from the domain root, so its root is just the origin.
+const portalRoot = window.location.origin;
+
+// Bare portal root, not root+pathname: mountSignInModal passes its own redirect
+// targets (both defaulting to it), and from /profile this fallback would
+// otherwise resolve to a URL that isn't in the Supabase allowlist.
+const portalHome = portalRoot;
 const auth = createSupabaseAuthAdapter({
   supabase,
-  defaultRedirectTo: window.location.origin,
-  logoutRedirectTo: window.location.origin,
+  defaultRedirectTo: portalHome,
+  logoutRedirectTo: portalHome,
 });
 
 const state = {
@@ -48,13 +44,15 @@ let modal;
 let slot;
 let profile = null; // profile-page elements, or null on the home page
 
-const show = (el, on) => { el.hidden = !on; };
+const show = (el, on) => {
+  el.hidden = !on;
+};
 
 export function start() {
   slot = document.getElementById("authActionSlot");
   profile = queryProfileElements();
 
-  modal = mountSignInModal({ authAdapter: auth });
+  modal = mountSignInModal({authAdapter: auth});
 
   // Closes the avatar dropdown on an outside click. Bound once, and it
   // re-queries the wrapper each time, so it survives slot re-renders.
@@ -82,7 +80,7 @@ function startSession() {
   const isRecoveryFlow = recovery.kind !== "none";
 
   if (recovery.kind === "expired" || recovery.kind === "pkce-unsupported") {
-    modal.open({ view: "recoveryError" });
+    modal.open({view: "recoveryError"});
   }
 
   let bootstrapped = false;
@@ -110,7 +108,7 @@ function startSession() {
     if (event === "PASSWORD_RECOVERY") {
       // Fires in every tab that revalidates a recovery session, including tabs
       // that never received the email link. Only this tab should prompt.
-      if (isRecoveryFlow) modal.open({ view: "setNewPassword" });
+      if (isRecoveryFlow) modal.open({view: "setNewPassword"});
     }
   });
 
@@ -131,7 +129,7 @@ function bootstrap() {
     // Carry the known user through the transient loading phases so the avatar
     // never flickers back to "Signing in…" on a re-bootstrap.
     initialState: state.user
-      ? { status: state.status, user: state.user, account: state.account, error: null }
+      ? {status: state.status, user: state.user, account: state.account, error: null}
       : null,
     onStateChange: (session) => {
       Object.assign(state, {
@@ -143,7 +141,7 @@ function bootstrap() {
     },
   }).catch((error) => {
     console.error("Session bootstrap failed:", error);
-    setState({ status: "error", error: "Unable to connect. Please refresh the page or try again later." });
+    setState({status: "error", error: "Unable to connect. Please refresh the page or try again later."});
   });
 }
 
@@ -168,19 +166,21 @@ function setState(patch) {
 /* ----------------------------------------------------------------- header */
 
 function render() {
-  slot.innerHTML = renderAuthAction(state, { profileHref: "/profile" });
+  slot.innerHTML = renderAuthAction(state, {
+    profileHref: `${portalRoot}/profile`,
+  });
   slot.querySelector("#geoglowsSignIn")?.addEventListener("click", () => modal.open());
   slot.querySelector("#geoglowsSignOut")?.addEventListener("click", signOut);
   if (profile) renderProfile();
 }
 
 async function signOut() {
-  setState({ action: "signing_out" });
+  setState({action: "signing_out"});
   try {
     await auth.signOutRedirect();
   } catch (error) {
     console.error("Sign out failed:", error);
-    setState({ action: null, error: "Sign out failed. Please try again." });
+    setState({action: null, error: "Sign out failed. Please try again."});
   }
 }
 
@@ -220,19 +220,19 @@ function bindProfileEvents() {
   profile.signIn.addEventListener("click", () => modal.open());
   profile.edit.addEventListener("click", () => startEditing());
   profile.complete.addEventListener("click", () => startEditing());
-  profile.cancel.addEventListener("click", () => setState({ editing: false, error: null }));
+  profile.cancel.addEventListener("click", () => setState({editing: false, error: null}));
   profile.form.addEventListener("submit", save);
 }
 
 function startEditing() {
   const row = state.account?.profile ?? {};
-  const { elements } = profile.form;
+  const {elements} = profile.form;
   elements.first_name.value = row.first_name ?? "";
   elements.middle_name.value = row.middle_name ?? "";
   elements.last_name.value = row.last_name ?? "";
   elements.user_type.value = row.user_type ?? "";
   elements.user_link.value = row.user_link ?? "";
-  setState({ editing: true, error: null, success: false });
+  setState({editing: true, error: null, success: false});
 }
 
 function renderProfile() {
@@ -251,7 +251,7 @@ function renderProfile() {
 
   if (!signedIn) return;
 
-  const { name, email, initials } = getUserDisplayInfo(state.user, state.account);
+  const {name, email, initials} = getUserDisplayInfo(state.user, state.account);
   profile.initials.textContent = initials;
   profile.name.textContent = name;
   profile.email.textContent = email;
@@ -277,20 +277,20 @@ function renderProfile() {
 
 async function save(event) {
   event.preventDefault();
-  const { elements } = profile.form;
+  const {elements} = profile.form;
   const first = elements.first_name.value.trim();
   const last = elements.last_name.value.trim();
   const middle = elements.middle_name.value.trim();
   const type = elements.user_type.value;
   const link = elements.user_link.value.trim();
 
-  if (!first) return setState({ error: "Please enter your first name." });
-  if (!last) return setState({ error: "Please enter your last name." });
+  if (!first) return setState({error: "Please enter your first name."});
+  if (!last) return setState({error: "Please enter your last name."});
   if (link && !safeHref(link)) {
-    return setState({ error: "Personal link must start with http:// or https://" });
+    return setState({error: "Personal link must start with http:// or https://"});
   }
 
-  setState({ action: "saving_profile", error: null });
+  setState({action: "saving_profile", error: null});
   try {
     await updateProfile(supabase, {
       id: state.user.sub,
@@ -306,10 +306,10 @@ async function save(event) {
       editing: false,
       success: true,
     });
-    setTimeout(() => setState({ success: false }), 3000);
+    setTimeout(() => setState({success: false}), 3000);
   } catch (error) {
     console.error("Profile update failed:", error);
-    setState({ action: null, error: "We couldn't save your profile. Please try again." });
+    setState({action: null, error: "We couldn't save your profile. Please try again."});
   }
 }
 
